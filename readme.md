@@ -11,12 +11,12 @@ library(devtools)
 install_github('Chrisjb/basemapR')
 ```
 
-    ## Downloading GitHub repo Chrisjb/basemapR@master
-
     ##   
-       checking for file ‘/private/var/folders/3v/3nkd8rwx2hzf33znl6f5qw6r0000gn/T/RtmpJuG9WI/remotes412653ffdb9b/Chrisjb-basemapR-e115934/DESCRIPTION’ ...
+       checking for file ‘/private/var/folders/3v/3nkd8rwx2hzf33znl6f5qw6r0000gn/T/RtmpWv4T8r/remotes425314bd49cd/Chrisjb-basemapR-dd770d6/DESCRIPTION’ ...
       
-    ✔  checking for file ‘/private/var/folders/3v/3nkd8rwx2hzf33znl6f5qw6r0000gn/T/RtmpJuG9WI/remotes412653ffdb9b/Chrisjb-basemapR-e115934/DESCRIPTION’ (398ms)
+       checking for file ‘/private/var/folders/3v/3nkd8rwx2hzf33znl6f5qw6r0000gn/T/RtmpWv4T8r/remotes425314bd49cd/Chrisjb-basemapR-dd770d6/DESCRIPTION’ ... 
+      
+    ✔  checking for file ‘/private/var/folders/3v/3nkd8rwx2hzf33znl6f5qw6r0000gn/T/RtmpWv4T8r/remotes425314bd49cd/Chrisjb-basemapR-dd770d6/DESCRIPTION’ (682ms)
     ## 
       
     ─  preparing ‘basemapR’:
@@ -31,14 +31,18 @@ install_github('Chrisjb/basemapR')
     ## 
       
     ─  checking for empty or unneeded directories
-    ## ─  looking to see if a ‘data/datalist’ file should be added
+    ## 
+      
+    ─  looking to see if a ‘data/datalist’ file should be added
     ## 
       
          NB: this package now depends on R (>= 3.5.0)
     ## 
       
          WARNING: Added dependency on R >= 3.5.0 because serialized objects in  serialize/load version 3 cannot be read in older versions of R.  File(s) containing such objects: 'basemapR/data/localauth_data.RData'
-    ## ─  building 'basemapR_0.1.0.tar.gz'
+    ## 
+      
+    ─  building 'basemapR_0.1.0.tar.gz'
     ## 
       
        
@@ -51,19 +55,12 @@ the `base_map` function can be added to a ggplot2 call as follows:
 ``` r
 library(ggplot2)
 library(sf)
-```
-
-    ## Linking to GEOS 3.6.1, GDAL 2.1.3, PROJ 4.9.3
-
-``` r
 library(basemapR)
 
 ggplot() +
   base_map(st_bbox(localauth_data), increase_zoom = 2) +
   geom_sf(data = localauth_data, fill = NA)
 ```
-
-    ## attribution: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>
 
 ![](readme_files/figure-gfm/basemap_ggplot-1.png)<!-- -->
 
@@ -150,15 +147,18 @@ be included on the maps and is returned as a message from the function.
 **dark** attribution: ©
 <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>
 contributors © <a href="https://carto.com/attributions">CARTO</a>
+![](readme_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
 
-**hydda**
+**hydda** ![](readme_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
 
-**positron**
+**positron** ![](readme_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
 
-**voyager**
+**voyager** ![](readme_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
 
 **wikimedia**
 
 **mapnik**
 
 **neighbourhood**
+
+##

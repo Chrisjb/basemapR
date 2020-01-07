@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Installing basemapR
 Install from github using devtools:
 
-```{r install message = F}
+```{r install, message = F, eval = F}
 library(devtools)
 install_github('Chrisjb/basemapR')
 ```
@@ -21,7 +21,7 @@ install_github('Chrisjb/basemapR')
 
 the `base_map` function can be added to a ggplot2 call as follows:
 
-```{r basemap_ggplot message = F}
+```{r basemap_ggplot, message = F}
 library(ggplot2)
 library(sf)
 library(basemapR)
@@ -81,6 +81,7 @@ The zoom parameter is calculated automatically. It can be increased by setting i
 Various options for base maps. The attribution for the base layer should be included on the maps and is returned as a message from the function.
 
 **dark**
+
 attribution: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>
 ```{r echo= F, message = F}
 ggplot() +
@@ -91,6 +92,7 @@ ggplot() +
 ```
 
 **hydda**
+
 ```{r echo= F, message = F}
 ggplot() +
   base_map(st_bbox(localauth_data), increase_zoom = 2, basemap = 'hydda') +
@@ -101,6 +103,7 @@ ggplot() +
 
 
 **positron**
+
 ```{r echo= F, message = F}
 ggplot() +
   base_map(st_bbox(localauth_data), increase_zoom = 2, basemap = 'positron') +
@@ -109,7 +112,9 @@ ggplot() +
 
 ```
 
+
 **voyager**
+
 ```{r echo= F, message = F}
 ggplot() +
   base_map(st_bbox(localauth_data), increase_zoom = 2, basemap = 'voyager') +
@@ -119,7 +124,8 @@ ggplot() +
 ```
 
 **wikimedia**
-```{r include = F, echo= F}
+
+```{r echo = F, message= F}
 ggplot() +
   base_map(st_bbox(localauth_data), increase_zoom = 2, basemap = 'wikimedia') +
   geom_sf(data = localauth_data, fill = NA) +
@@ -129,7 +135,8 @@ ggplot() +
 
 
 **mapnik**
-```{r include = F, echo= F, message = F}
+
+```{r echo= F, message = F}
 ggplot() +
   base_map(st_bbox(localauth_data), increase_zoom = 2, basemap = 'mapnik') +
   geom_sf(data = localauth_data, fill = NA) +
@@ -138,7 +145,8 @@ ggplot() +
 ```
 
 **neighbourhood**
-```{r include = F, message= F}
+
+```{r echo = F, message= F}
 ggplot() +
   base_map(st_bbox(localauth_data), increase_zoom = 2, basemap = 'neighbourhood') +
   geom_sf(data = localauth_data, fill = NA) +
@@ -146,3 +154,31 @@ ggplot() +
 
 ```
 
+
+
+## expand_bbox
+This function takes in a bbox object and expands it by a set number of meters in the `X` and `Y` directions. If we want an asymmetric expansion (100m to the east but 1km to the west) we can also specify the parameters `X2` and `Y2`.
+
+```{r}
+# define a single point
+point <- data.frame(x = -0.086543 ,
+                    y= 51.504567) %>%
+  st_as_sf(coords= c('x','y'), crs = 4326)
+
+# standard bbox for our point
+my_bbox_1 <- st_bbox(point)
+
+# expand the bbox by 1000m
+my_bbox_2 <- expand_bbox(my_bbox_1, X = 1000, Y = 1000)
+```
+
+
+We will have to also set the x and y limits ourselves in `coord_sf` to clip the canvas to our basemap:
+
+```{r}
+ggplot() + 
+  base_map(my_bbox_2, increase_zoom = 1, basemap = 'positron')+
+  geom_sf(data = point) +
+  coord_sf(xlim = c(my_bbox_2['xmin'], my_bbox_2['xmax']),
+           ylim = c(my_bbox_2['ymin'],my_bbox_2['ymax']),crs = 4326)
+```
