@@ -11,43 +11,6 @@ library(devtools)
 install_github('Chrisjb/basemapR')
 ```
 
-    ##   
-       checking for file ‘/private/var/folders/3v/3nkd8rwx2hzf33znl6f5qw6r0000gn/T/RtmpWv4T8r/remotes425314bd49cd/Chrisjb-basemapR-dd770d6/DESCRIPTION’ ...
-      
-       checking for file ‘/private/var/folders/3v/3nkd8rwx2hzf33znl6f5qw6r0000gn/T/RtmpWv4T8r/remotes425314bd49cd/Chrisjb-basemapR-dd770d6/DESCRIPTION’ ... 
-      
-    ✔  checking for file ‘/private/var/folders/3v/3nkd8rwx2hzf33znl6f5qw6r0000gn/T/RtmpWv4T8r/remotes425314bd49cd/Chrisjb-basemapR-dd770d6/DESCRIPTION’ (682ms)
-    ## 
-      
-    ─  preparing ‘basemapR’:
-    ## 
-      
-       checking DESCRIPTION meta-information ...
-      
-    ✔  checking DESCRIPTION meta-information
-    ## 
-      
-    ─  checking for LF line-endings in source and make files and shell scripts
-    ## 
-      
-    ─  checking for empty or unneeded directories
-    ## 
-      
-    ─  looking to see if a ‘data/datalist’ file should be added
-    ## 
-      
-         NB: this package now depends on R (>= 3.5.0)
-    ## 
-      
-         WARNING: Added dependency on R >= 3.5.0 because serialized objects in  serialize/load version 3 cannot be read in older versions of R.  File(s) containing such objects: 'basemapR/data/localauth_data.RData'
-    ## 
-      
-    ─  building 'basemapR_0.1.0.tar.gz'
-    ## 
-      
-       
-    ## 
-
 ## Adding a basemap to ggplot2
 
 the `base_map` function can be added to a ggplot2 call as follows:
@@ -144,21 +107,66 @@ desired aesthetic.
 Various options for base maps. The attribution for the base layer should
 be included on the maps and is returned as a message from the function.
 
-**dark** attribution: ©
+**dark**
+
+attribution: ©
 <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>
 contributors © <a href="https://carto.com/attributions">CARTO</a>
 ![](readme_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
 
-**hydda** ![](readme_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+**hydda**
 
-**positron** ![](readme_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+![](readme_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
 
-**voyager** ![](readme_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
+**positron**
+
+![](readme_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+
+**voyager**
+
+![](readme_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
 
 **wikimedia**
 
+![](readme_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
+
 **mapnik**
+
+![](readme_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
 
 **neighbourhood**
 
-##
+![](readme_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
+
+## expand\_bbox
+
+This function takes in a bbox object and expands it by a set number of
+meters in the `X` and `Y` directions. If we want an asymmetric expansion
+(100m to the east but 1km to the west) we can also specify the
+parameters `X2` and `Y2`.
+
+``` r
+# define a single point
+point <- data.frame(x = -0.086543 ,
+                    y= 51.504567) %>%
+  st_as_sf(coords= c('x','y'), crs = 4326)
+
+# standard bbox for our point
+my_bbox_1 <- st_bbox(point)
+
+# expand the bbox by 1000m
+my_bbox_2 <- expand_bbox(my_bbox_1, X = 1000, Y = 1000)
+```
+
+We will have to also set the x and y limits ourselves in `coord_sf` to
+clip the canvas to our basemap:
+
+``` r
+ggplot() + 
+  base_map(my_bbox_2, increase_zoom = 1, basemap = 'positron')+
+  geom_sf(data = point) +
+  coord_sf(xlim = c(my_bbox_2['xmin'], my_bbox_2['xmax']),
+           ylim = c(my_bbox_2['ymin'],my_bbox_2['ymax']),crs = 4326)
+```
+
+![](readme_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->
