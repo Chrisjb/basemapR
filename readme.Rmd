@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Installing basemapR
 Install from github using devtools:
 
-```{r install}
+```{r install message = F}
 library(devtools)
 install_github('Chrisjb/basemapR')
 ```
@@ -21,7 +21,7 @@ install_github('Chrisjb/basemapR')
 
 the `base_map` function can be added to a ggplot2 call as follows:
 
-```{r basemap_ggplot}
+```{r basemap_ggplot message = F}
 library(ggplot2)
 library(sf)
 library(basemapR)
@@ -82,7 +82,7 @@ Various options for base maps. The attribution for the base layer should be incl
 
 **dark**
 attribution: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>
-```{r include = F, message= F}
+```{r echo= F, message = F}
 ggplot() +
   base_map(st_bbox(localauth_data), increase_zoom = 2, basemap = 'dark') +
   geom_sf(data = localauth_data, fill = NA) +
@@ -91,7 +91,7 @@ ggplot() +
 ```
 
 **hydda**
-```{r include = F, message= F}
+```{r echo= F, message = F}
 ggplot() +
   base_map(st_bbox(localauth_data), increase_zoom = 2, basemap = 'hydda') +
   geom_sf(data = localauth_data, fill = NA) +
@@ -101,7 +101,7 @@ ggplot() +
 
 
 **positron**
-```{r include = F, message= F}
+```{r echo= F, message = F}
 ggplot() +
   base_map(st_bbox(localauth_data), increase_zoom = 2, basemap = 'positron') +
   geom_sf(data = localauth_data, fill = NA) +
@@ -110,7 +110,7 @@ ggplot() +
 ```
 
 **voyager**
-```{r include = F, message= F}
+```{r echo= F, message = F}
 ggplot() +
   base_map(st_bbox(localauth_data), increase_zoom = 2, basemap = 'voyager') +
   geom_sf(data = localauth_data, fill = NA) +
@@ -119,7 +119,7 @@ ggplot() +
 ```
 
 **wikimedia**
-```{r include = F, message= F}
+```{r include = F, echo= F}
 ggplot() +
   base_map(st_bbox(localauth_data), increase_zoom = 2, basemap = 'wikimedia') +
   geom_sf(data = localauth_data, fill = NA) +
@@ -129,7 +129,7 @@ ggplot() +
 
 
 **mapnik**
-```{r include = F, message= F}
+```{r include = F, echo= F, message = F}
 ggplot() +
   base_map(st_bbox(localauth_data), increase_zoom = 2, basemap = 'mapnik') +
   geom_sf(data = localauth_data, fill = NA) +
