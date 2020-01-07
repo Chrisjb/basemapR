@@ -11,7 +11,7 @@ base_map(bbox, increase_zoom = 0, basemap = "dark", nolabels = F)
 
 \item{increase_zoom}{the zoom is automatically calculated for the map but we can increase or decrease the zoom by setting an integer value.}
 
-\item{basemap}{the style of basemap to use. Currently supports 'dark', 'hydda', 'positron', 'voyager', 'wikimedia', 'mapnik', 'neighbourhood', esri, esri-imagery}
+\item{basemap}{the style of basemap to use. Currently supports 'dark', 'hydda', 'positron', 'voyager', 'wikimedia', 'mapnik', 'neighbourhood'}
 
 \item{nolabels}{if TRUE, removes labels from the basemap. This is only available for some styles.}
 }

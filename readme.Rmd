@@ -8,22 +8,141 @@ output: github_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
+## Installing basemapR
+Install from github using devtools:
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
+```{r install}
+library(devtools)
+install_github('Chrisjb/basemapR')
 ```
 
-## Including Plots
 
-You can also embed plots, for example:
+## Adding a basemap to ggplot2
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+the `base_map` function can be added to a ggplot2 call as follows:
+
+```{r basemap_ggplot}
+library(ggplot2)
+library(sf)
+library(basemapR)
+
+ggplot() +
+  base_map(st_bbox(localauth_data), increase_zoom = 2) +
+  geom_sf(data = localauth_data, fill = NA)
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+#### bbox
+A bounding box created using `st_bbox` or the basemapR function `expand_bbox` (see below).  The bounding box defines the extents over which we want the base map to be returned. 
+
+This will normally be the largest layer on our map. Sometimes we will have two distinct layers neither of which covers the full extent of the map on their own. For example:
+
+```{r}
+library(dplyr)
+library(basemapR)
+library(sf)
+
+
+camden <- localauth_data %>% 
+  filter(Name  == 'Camden')
+
+wandsworth <- localauth_data %>% 
+  filter(Name  == 'Wandsworth')
+
+
+ggplot() +
+  geom_sf(data = camden) +
+  geom_sf(data = wandsworth)
+
+```
+
+We need to create a bbox that combines both layers for the base map to cover the full extents of the canvas:
+
+```{r message = F}
+# create bbox polygons for each and union and then convert back to bbox object
+my_bbox <- st_bbox(camden) %>%
+  st_as_sfc() %>%
+  st_union(st_as_sfc(st_bbox(wandsworth))) %>%
+  st_bbox()
+```
+
+```{r}
+ggplot() +
+  base_map(bbox = my_bbox, basemap = 'hydda', increase_zoom = 2) +
+  geom_sf(data = camden, fill = NA) +
+  geom_sf(data = wandsworth, fill = NA) +
+  ggthemes::theme_map()
+```
+
+#### increase_zoom
+The zoom parameter is calculated automatically. It can be increased by setting increase_zoom to an integer value. In the first example we set `increase_zoom = 2`. We can play around with this value as per our desired aesthetic.
+
+
+#### basemap
+Various options for base maps. The attribution for the base layer should be included on the maps and is returned as a message from the function.
+
+**dark**
+attribution: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>
+```{r include = F, message= F}
+ggplot() +
+  base_map(st_bbox(localauth_data), increase_zoom = 2, basemap = 'dark') +
+  geom_sf(data = localauth_data, fill = NA) +
+  ggthemes::theme_map()
+
+```
+
+**hydda**
+```{r include = F, message= F}
+ggplot() +
+  base_map(st_bbox(localauth_data), increase_zoom = 2, basemap = 'hydda') +
+  geom_sf(data = localauth_data, fill = NA) +
+  ggthemes::theme_map()
+
+```
+
+
+**positron**
+```{r include = F, message= F}
+ggplot() +
+  base_map(st_bbox(localauth_data), increase_zoom = 2, basemap = 'positron') +
+  geom_sf(data = localauth_data, fill = NA) +
+  ggthemes::theme_map()
+
+```
+
+**voyager**
+```{r include = F, message= F}
+ggplot() +
+  base_map(st_bbox(localauth_data), increase_zoom = 2, basemap = 'voyager') +
+  geom_sf(data = localauth_data, fill = NA) +
+  ggthemes::theme_map()
+
+```
+
+**wikimedia**
+```{r include = F, message= F}
+ggplot() +
+  base_map(st_bbox(localauth_data), increase_zoom = 2, basemap = 'wikimedia') +
+  geom_sf(data = localauth_data, fill = NA) +
+  ggthemes::theme_map()
+
+```
+
+
+**mapnik**
+```{r include = F, message= F}
+ggplot() +
+  base_map(st_bbox(localauth_data), increase_zoom = 2, basemap = 'mapnik') +
+  geom_sf(data = localauth_data, fill = NA) +
+  ggthemes::theme_map()
+
+```
+
+**neighbourhood**
+```{r include = F, message= F}
+ggplot() +
+  base_map(st_bbox(localauth_data), increase_zoom = 2, basemap = 'neighbourhood') +
+  geom_sf(data = localauth_data, fill = NA) +
+  ggthemes::theme_map()
+
+```
+

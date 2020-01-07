@@ -4,7 +4,7 @@
 #'
 #' @param bbox bounding box for out map extents generated using st_bbox() and expanded as necessary using expand_bbox(). Bounding box should be in lat/lng (epsg: 4326).
 #' @param increase_zoom the zoom is automatically calculated for the map but we can increase or decrease the zoom by setting an integer value.
-#' @param basemap the style of basemap to use. Currently supports 'dark', 'hydda', 'positron', 'voyager', 'wikimedia', 'mapnik', 'neighbourhood', esri, esri-imagery
+#' @param basemap the style of basemap to use. Currently supports 'dark', 'hydda', 'positron', 'voyager', 'wikimedia', 'mapnik', 'neighbourhood'
 #' @param nolabels if TRUE, removes labels from the basemap. This is only available for some styles.
 #'
 #' @return a set of tiles to be added to a ggplot object.
@@ -56,7 +56,7 @@ base_map <- function(bbox, increase_zoom=0, basemap = 'dark', nolabels = F){
 
   nw_corners <- purrr::pmap_dfr(tiles, xy2lonlat, zoom = zoom)
   # add 1 to x and y to get the south-east corners
-  se_corners <- purrr::pmap_dfr(mutate_all(tiles, `+`, 1), xy2lonlat, zoom = zoom)
+  se_corners <- purrr::pmap_dfr(dplyr::mutate_all(tiles, `+`, 1), xy2lonlat, zoom = zoom)
 
   names(nw_corners) <- c("xmin", "ymax")
   names(se_corners) <- c("xmax", "ymin")
@@ -143,7 +143,7 @@ base_map <- function(bbox, increase_zoom=0, basemap = 'dark', nolabels = F){
 
 
   args <- tile_positions %>%
-    mutate(raster = pngs)
+    dplyr::mutate(raster = pngs)
 
   return(purrr::pmap(args,annotation_raster, interpolate = TRUE))
 }
