@@ -1,4 +1,4 @@
-#' Expand Bounding Box
+#' Expand bbox
 #'
 #' A function to take a bounding box (generated using st_bbox) and expand it by x meters in the X direction and y meters in the Y direction.
 #'
