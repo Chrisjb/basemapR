@@ -39,20 +39,6 @@ map on their own. For example:
 
 ``` r
 library(dplyr)
-```
-
-    ## 
-    ## Attaching package: 'dplyr'
-
-    ## The following objects are masked from 'package:stats':
-    ## 
-    ##     filter, lag
-
-    ## The following objects are masked from 'package:base':
-    ## 
-    ##     intersect, setdiff, setequal, union
-
-``` r
 library(basemapR)
 library(sf)
 
@@ -118,23 +104,29 @@ contributors © <a href="https://carto.com/attributions">CARTO</a>
 
 ![](readme_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
 
-**positron**
+**positron** attribution: Tiles courtesy of <http://openstreetmap.se/>
+OpenStreetMap Sweden; Map data ©
+<a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>
+contributors ![](readme_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
 
-![](readme_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
-
-**voyager**
-
+**voyager** attribution: ©
+<a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>
+contributors © <a href="https://carto.com/attributions">CARTO</a>
 ![](readme_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
 
-**wikimedia**
-
+**wikimedia** please see attribution details:
+<https://wikimediafoundation.org/wiki/Maps_Terms_of_Use>
 ![](readme_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
 
-**mapnik**
+**mapnik** attribution: ©
+<a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>
+contributors ![](readme_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
 
-![](readme_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+#### nolabels
 
-**neighbourhood**
+If `nolabels=TRUE` the function will fetch the basemap without street or
+place labels. This option is only available for some basemaps and will
+return a message if unavailable.
 
 ![](readme_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
 

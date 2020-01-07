@@ -4,7 +4,7 @@
 #'
 #' @param bbox bounding box for out map extents generated using st_bbox() and expanded as necessary using expand_bbox(). Bounding box should be in lat/lng (epsg: 4326).
 #' @param increase_zoom the zoom is automatically calculated for the map but we can increase or decrease the zoom by setting an integer value.
-#' @param basemap the style of basemap to use. Currently supports 'dark', 'hydda', 'positron', 'voyager', 'wikimedia', 'mapnik', 'neighbourhood'
+#' @param basemap the style of basemap to use. Currently supports 'dark', 'hydda', 'positron', 'voyager', 'wikimedia', 'mapnik'
 #' @param nolabels if TRUE, removes labels from the basemap. This is only available for some styles.
 #'
 #' @return a set of tiles to be added to a ggplot object.
