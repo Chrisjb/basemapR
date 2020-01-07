@@ -4,7 +4,7 @@
 #'
 #' @param bbox bounding box for out map extents generated using st_bbox() and expanded as necessary using expand_bbox(). Bounding box should be in lat/lng (epsg: 4326).
 #' @param increase_zoom the zoom is automatically calculated for the map but we can increase or decrease the zoom by setting an integer value.
-#' @param basemap the style of basemap to use. Currently supports 'dark', 'hydda', 'positron', 'voyager', 'wikimedia', 'mapnik'
+#' @param basemap the style of basemap to use. Currently supports 'dark', 'hydda', 'positron', 'voyager', 'wikimedia', 'mapnik', google, google-nobg, google-hybrid, google-terrain, google-satellite, google-road
 #' @param nolabels if TRUE, removes labels from the basemap. This is only available for some styles.
 #'
 #' @return a set of tiles to be added to a ggplot object.
@@ -18,7 +18,7 @@
 #'
 #' # add to ggplot
 #' ggplot() +
-#' base_map(bbox, increase_zoom = 2, basemap = 'hydda')+
+#' base_map(bbox, increase_zoom = 2, basemap = 'google-terrain')+
 #' geom_sf(data = localauth_data, fill =NA )  +
 #' coord_sf(xlim = c(bbox$xmin, bbox$xmax), ylim = c(bbox$ymin, bbox$ymax), crs = 4326)
 #'
@@ -67,7 +67,7 @@ base_map <- function(bbox, increase_zoom=0, basemap = 'dark', nolabels = F){
   #cartodblayer
   if(basemap == 'positron'){
     url <- paste0('https://basemaps.cartocdn.com/light_all/',zoom,'/',tiles$x,'/',tiles$y,'.png') # positron
-
+    message(url)
   } else if(basemap == 'hydda') {
     if(nolabels == F) {
       url <- paste0('https://tile.openstreetmap.se/hydda/full/',zoom,'/',tiles$x,'/',tiles$y,'.png') # hydda
@@ -136,7 +136,20 @@ base_map <- function(bbox, increase_zoom=0, basemap = 'dark', nolabels = F){
     url <- paste0('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/',zoom,'/',tiles$y,'/',tiles$x,'.png')
 
     message('attribution: Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community')
+  } else if(basemap == 'google'){
+    url <- paste0('https://mt1.google.com/vt/lyrs=m&x=',tiles$x,'&y=',tiles$y,'&z=',zoom,'')
+  } else if(basemap == 'google-road'){
+    url <- paste0('https://mt1.google.com/vt/lyrs=r&x=',tiles$x,'&y=',tiles$y,'&z=',zoom,'')
+  } else if(basemap == 'google-nobg'){
+    url <- paste0('https://mt1.google.com/vt/lyrs=h&x=',tiles$x,'&y=',tiles$y,'&z=',zoom,'')
+  } else if(basemap == 'google-satellite'){
+    url <- paste0('https://mt1.google.com/vt/lyrs=s&x=',tiles$x,'&y=',tiles$y,'&z=',zoom,'')
+  } else if(basemap == 'google-hybrid'){
+    url <- paste0('https://mt1.google.com/vt/lyrs=y&x=',tiles$x,'&y=',tiles$y,'&z=',zoom,'')
+  } else if(basemap == 'google-terrain'){
+    url <- paste0('https://mt1.google.com/vt/lyrs=p&x=',tiles$x,'&y=',tiles$y,'&z=',zoom,'')
   }
+
 
 
   pngs <- map(url, get_tile)

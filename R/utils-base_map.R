@@ -32,5 +32,10 @@ get_tile <- function(url) {
 
   curl::curl_download(url, destfile = tmp)
 
-  png::readPNG(tmp)
+  tryCatch(png::readPNG(tmp),
+           error = function(e){
+             jpeg::readJPEG(tmp)
+           })
+
+
 }

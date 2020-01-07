@@ -11,7 +11,7 @@ base_map(bbox, increase_zoom = 0, basemap = "dark", nolabels = F)
 
 \item{increase_zoom}{the zoom is automatically calculated for the map but we can increase or decrease the zoom by setting an integer value.}
 
-\item{basemap}{the style of basemap to use. Currently supports 'dark', 'hydda', 'positron', 'voyager', 'wikimedia', 'mapnik', 'neighbourhood'}
+\item{basemap}{the style of basemap to use. Currently supports 'dark', 'hydda', 'positron', 'voyager', 'wikimedia', 'mapnik', google, google-nobg, google-hybrid, google-terrain, google-satellite, google-road}
 
 \item{nolabels}{if TRUE, removes labels from the basemap. This is only available for some styles.}
 }
@@ -27,7 +27,7 @@ bbox <- st_bbox(localauth_data)
 
 # add to ggplot
 ggplot() +
-base_map(bbox, increase_zoom = 2, basemap = 'hydda')+
+base_map(bbox, increase_zoom = 2, basemap = 'google-terrain')+
 geom_sf(data = localauth_data, fill =NA )  +
 coord_sf(xlim = c(bbox$xmin, bbox$xmax), ylim = c(bbox$ymin, bbox$ymax), crs = 4326)
 
