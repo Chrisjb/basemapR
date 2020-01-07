@@ -152,7 +152,7 @@ base_map <- function(bbox, increase_zoom=0, basemap = 'dark', nolabels = F){
 
 
 
-  pngs <- map(url, get_tile)
+  pngs <- purrr::map(url, get_tile)
 
 
   args <- tile_positions %>%
