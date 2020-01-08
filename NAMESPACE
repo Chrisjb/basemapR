@@ -2,5 +2,7 @@
 
 export(base_map)
 export(expand_bbox)
-import(purrr)
 import(sf)
+importFrom(purrr,map)
+importFrom(purrr,pmap)
+importFrom(purrr,pmap_dfr)

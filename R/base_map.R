@@ -9,7 +9,8 @@
 #'
 #' @return a set of tiles to be added to a ggplot object.
 #'
-#' @import sf purrr
+#' @import sf
+#' @importFrom purrr map pmap pmap_dfr
 #'
 #'
 #' @examples
