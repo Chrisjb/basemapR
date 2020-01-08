@@ -9,8 +9,8 @@
 #'
 #' @return a set of tiles to be added to a ggplot object.
 #'
-#' @import sf
-#' @import purrr
+#' @import sf purrr
+#'
 #'
 #' @examples
 #' # get bounding box for our map
