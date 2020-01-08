@@ -23,9 +23,11 @@ fetches a basemap for our map based on the map's bounding box. Includes themes a
 }
 \examples{
 # get bounding box for our map
+library(sf)
 bbox <- st_bbox(localauth_data)
 
 # add to ggplot
+library(ggplot2)
 ggplot() +
 base_map(bbox, increase_zoom = 2, basemap = 'google-terrain')+
 geom_sf(data = localauth_data, fill =NA )  +
@@ -33,6 +35,7 @@ coord_sf(xlim = c(bbox$xmin, bbox$xmax), ylim = c(bbox$ymin, bbox$ymax), crs = 4
 
 
 # add straight to ggplot
+
 ggplot() +
 base_map(st_bbox(localauth_data), increase_zoom = 2) +
 geom_sf(data = localauth_data, fill = NA)

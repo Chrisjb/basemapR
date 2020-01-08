@@ -12,10 +12,12 @@
 #' @return a named numeric vector of bbox extents. This can be converted into an sf object using sf::st_as_sfc(). Coordinates are in lat/lng (4326).
 #'
 #' @examples
+#' library(sf)
 #' camden <- dplyr::filter(localauth_data, Name == 'Camden') %>%
 #'   st_transform(4326)
 #' bbox <- expand_bbox(st_bbox(camden), 5000, 5000)
 #'
+#' library(ggplot2)
 #' ggplot() +
 #'   base_map(bbox, increase_zoom = 2) +
 #'   geom_sf(data = camden, fill = NA) +

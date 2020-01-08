@@ -15,9 +15,11 @@
 #'
 #' @examples
 #' # get bounding box for our map
+#' library(sf)
 #' bbox <- st_bbox(localauth_data)
 #'
 #' # add to ggplot
+#' library(ggplot2)
 #' ggplot() +
 #' base_map(bbox, increase_zoom = 2, basemap = 'google-terrain')+
 #' geom_sf(data = localauth_data, fill =NA )  +
@@ -25,6 +27,7 @@
 #'
 #'
 #' # add straight to ggplot
+#'
 #' ggplot() +
 #' base_map(st_bbox(localauth_data), increase_zoom = 2) +
 #' geom_sf(data = localauth_data, fill = NA)
