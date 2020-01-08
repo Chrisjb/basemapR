@@ -11,6 +11,13 @@ library(devtools)
 install_github('Chrisjb/basemapR')
 ```
 
+### Credits
+
+A lot of credit has to go to Hiroakki Yutani for his [blog
+post](https://yutani.rbind.io/post/2018-06-09-plot-osm-tiles/) from
+which I borrowed a lot of code for the `base_map` function. I hope they
+don’t mind\!
+
 ## Adding a basemap to ggplot2
 
 the `base_map` function can be added to a ggplot2 call as follows:
@@ -160,5 +167,7 @@ ggplot() +
   coord_sf(xlim = c(my_bbox_2['xmin'], my_bbox_2['xmax']),
            ylim = c(my_bbox_2['ymin'],my_bbox_2['ymax']),crs = 4326)
 ```
+
+    ## https://basemaps.cartocdn.com/light_all/14/8187/5448.pnghttps://basemaps.cartocdn.com/light_all/14/8188/5448.pnghttps://basemaps.cartocdn.com/light_all/14/8187/5447.pnghttps://basemaps.cartocdn.com/light_all/14/8188/5447.png
 
 ![](readme_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->
