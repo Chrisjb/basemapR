@@ -10,7 +10,7 @@
 #' @return a set of tiles to be added to a ggplot object.
 #'
 #' @import sf
-#' @importFrom purrr map pmap_dfr pmap
+#' @import purrr
 #'
 #' @examples
 #' # get bounding box for our map
