@@ -71,7 +71,6 @@ base_map <- function(bbox, increase_zoom=0, basemap = 'dark', nolabels = F){
   #cartodblayer
   if(basemap == 'positron'){
     url <- paste0('https://basemaps.cartocdn.com/light_all/',zoom,'/',tiles$x,'/',tiles$y,'.png') # positron
-    message(url)
   } else if(basemap == 'hydda') {
     if(nolabels == F) {
       url <- paste0('https://tile.openstreetmap.se/hydda/full/',zoom,'/',tiles$x,'/',tiles$y,'.png') # hydda
@@ -141,17 +140,25 @@ base_map <- function(bbox, increase_zoom=0, basemap = 'dark', nolabels = F){
 
     message('attribution: Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community')
   } else if(basemap == 'google'){
-    url <- paste0('https://mt1.google.com/vt/lyrs=m&x=',tiles$x,'&y=',tiles$y,'&z=',zoom,'')
+    url <- paste0('https://mt.google.com/vt/lyrs=m&x=',tiles$x,'&y=',tiles$y,'&z=',zoom,'')
+    message('please see attribution details: https://wikimediafoundation.org/wiki/Maps_Terms_of_Use')
+
   } else if(basemap == 'google-road'){
-    url <- paste0('https://mt1.google.com/vt/lyrs=r&x=',tiles$x,'&y=',tiles$y,'&z=',zoom,'')
+    url <- paste0('https://mt.google.com/vt/lyrs=r&x=',tiles$x,'&y=',tiles$y,'&z=',zoom,'')
+    message('please cite: map data \uA9 2020 Google')
+
   } else if(basemap == 'google-nobg'){
-    url <- paste0('https://mt1.google.com/vt/lyrs=h&x=',tiles$x,'&y=',tiles$y,'&z=',zoom,'')
+    url <- paste0('https://mt.google.com/vt/lyrs=h&x=',tiles$x,'&y=',tiles$y,'&z=',zoom,'')
+    message('please cite: map data \uA9 2020 Google')
   } else if(basemap == 'google-satellite'){
-    url <- paste0('https://mt1.google.com/vt/lyrs=s&x=',tiles$x,'&y=',tiles$y,'&z=',zoom,'')
+    url <- paste0('https://mt.google.com/vt/lyrs=s&x=',tiles$x,'&y=',tiles$y,'&z=',zoom,'')
+    message('please cite: map data \uA9 2020 Google')
   } else if(basemap == 'google-hybrid'){
-    url <- paste0('https://mt1.google.com/vt/lyrs=y&x=',tiles$x,'&y=',tiles$y,'&z=',zoom,'')
+    url <- paste0('https://mt.google.com/vt/lyrs=y&x=',tiles$x,'&y=',tiles$y,'&z=',zoom,'')
+    message('please cite: map data \uA9 2020 Google')
   } else if(basemap == 'google-terrain'){
-    url <- paste0('https://mt1.google.com/vt/lyrs=p&x=',tiles$x,'&y=',tiles$y,'&z=',zoom,'')
+    url <- paste0('https://mt.google.com/vt/lyrs=p&x=',tiles$x,'&y=',tiles$y,'&z=',zoom,'')
+    message('please cite: map data \uA9 2020 Google')
   }
 
 
