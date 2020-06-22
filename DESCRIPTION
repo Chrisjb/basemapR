@@ -14,6 +14,8 @@ Authors@R:
 Description: Fetches map tiles that can be added to ggplot2
     maps.
 License: MIT
+URL: https://github.com/Chrisjb/basemapR
+BugReports: https://github.com/Chrisjb/basemapR
 Imports: 
     curl,
     dplyr,
