@@ -32,7 +32,7 @@ ggplot() +
   geom_sf(data = localauth_data, fill = NA)
 ```
 
-![](readme_files/figure-gfm/basemap_ggplot-1.png)<!-- -->
+![](man/figures/basemap_ggplot-1.png)<!-- -->
 
 #### bbox
 
@@ -62,7 +62,7 @@ ggplot() +
   geom_sf(data = wandsworth)
 ```
 
-![](readme_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
+![](man/figures/unnamed-chunk-1-1.png)<!-- -->
 
 We need to create a bbox that combines both layers for the base map to
 cover the full extents of the
@@ -86,7 +86,7 @@ ggplot() +
 
     ## attribution: Tiles courtesy of http://openstreetmap.se/ OpenStreetMap Sweden; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors
 
-![](readme_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
+![](man/figures/unnamed-chunk-3-1.png)<!-- -->
 
 #### increase\_zoom
 
@@ -105,29 +105,29 @@ be included on the maps and is returned as a message from the function.
 attribution: ©
 <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>
 contributors © <a href="https://carto.com/attributions">CARTO</a>
-![](readme_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
+![](man/figures/unnamed-chunk-4-1.png)<!-- -->
 
 **hydda**
 
-![](readme_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+![](man/figures/unnamed-chunk-5-1.png)<!-- -->
 
 **positron** attribution: Tiles courtesy of <http://openstreetmap.se/>
 OpenStreetMap Sweden; Map data ©
 <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>
-contributors ![](readme_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+contributors ![](man/figures/unnamed-chunk-6-1.png)<!-- -->
 
 **voyager** attribution: ©
 <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>
 contributors © <a href="https://carto.com/attributions">CARTO</a>
-![](readme_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
+![](man/figures/unnamed-chunk-7-1.png)<!-- -->
 
 **wikimedia** please see attribution details:
 <https://wikimediafoundation.org/wiki/Maps_Terms_of_Use>
-![](readme_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
+![](man/figures/unnamed-chunk-8-1.png)<!-- -->
 
 **mapnik** attribution: ©
 <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>
-contributors ![](readme_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+contributors ![](man/figures/unnamed-chunk-9-1.png)<!-- -->
 
 #### nolabels
 
@@ -135,7 +135,7 @@ If `nolabels=TRUE` the function will fetch the basemap without street or
 place labels. This option is only available for some basemaps and will
 return a message if unavailable.
 
-![](readme_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
+![](man/figures/unnamed-chunk-10-1.png)<!-- -->
 
 ## expand\_bbox
 
@@ -170,4 +170,4 @@ ggplot() +
 
     ## https://basemaps.cartocdn.com/light_all/14/8187/5448.pnghttps://basemaps.cartocdn.com/light_all/14/8188/5448.pnghttps://basemaps.cartocdn.com/light_all/14/8187/5447.pnghttps://basemaps.cartocdn.com/light_all/14/8188/5447.png
 
-![](readme_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->
+![](man/figures/unnamed-chunk-12-1.png)<!-- -->
