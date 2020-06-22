@@ -3,10 +3,14 @@ Package: basemapR
 Title: Base Maps For ggplot2
 Version: 0.1.0
 Authors@R: 
-    person(given = "Chris",
-           family = "B",
-           role = c("cre", "aut"),
-           email = "c.jamesbailey@gmail.com")
+    c(person(given = "Chris",
+             family = "B",
+             role = c("cre", "aut"),
+             email = "c.jamesbailey@gmail.com"),
+      person(given = "Liz",
+             family = "Roten",
+             role = "ctb",
+             email = "roten.elizabeth@gmail.com"))
 Description: Fetches map tiles that can be added to ggplot2
     maps.
 License: MIT
