@@ -68,14 +68,18 @@ base_map <- function(bbox, increase_zoom=0, basemap = 'dark', nolabels = F){
   tile_positions <- dplyr::bind_cols(nw_corners, se_corners)
 
 
-  #cartodblayer
-  if(basemap == 'positron'){
-    url <- paste0('https://basemaps.cartocdn.com/light_all/',zoom,'/',tiles$x,'/',tiles$y,'.png') # positron
-  } else if(basemap == 'hydda') {
-    if(nolabels == F) {
-      url <- paste0('https://tile.openstreetmap.se/hydda/full/',zoom,'/',tiles$x,'/',tiles$y,'.png') # hydda
+  # cartodblayer
+  if (basemap == "positron") {
+    if (nolabels == F) {
+      url <- paste0("https://basemaps.cartocdn.com/light_all/", zoom, "/", tiles$x, "/", tiles$y, ".png") # positron
     } else {
-      url <- paste0('https://tile.openstreetmap.se/hydda/base/',zoom,'/',tiles$x,'/',tiles$y,'.png')
+      url <- paste0("https://basemaps.cartocdn.com/light_nolabels/", zoom, "/", tiles$x, "/", tiles$y, ".png")
+    }
+  } else if (basemap == "hydda") {
+    if (nolabels == F) {
+      url <- paste0("https://tile.openstreetmap.se/hydda/full/", zoom, "/", tiles$x, "/", tiles$y, ".png") # hydda
+    } else {
+      url <- paste0("https://tile.openstreetmap.se/hydda/base/", zoom, "/", tiles$x, "/", tiles$y, ".png")
     }
     message('attribution: Tiles courtesy of http://openstreetmap.se/ OpenStreetMap Sweden; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors')
 
