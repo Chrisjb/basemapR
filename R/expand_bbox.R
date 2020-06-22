@@ -13,7 +13,7 @@
 #'
 #' @examples
 #' library(sf)
-#' camden <- dplyr::filter(localauth_data, Name == 'Camden') %>%
+#' camden <- dplyr::filter(localauth_data, Name == "Camden") %>%
 #'   st_transform(4326)
 #' bbox <- expand_bbox(st_bbox(camden), 5000, 5000)
 #'
@@ -21,33 +21,27 @@
 #' ggplot() +
 #'   base_map(bbox, increase_zoom = 2) +
 #'   geom_sf(data = camden, fill = NA) +
-#'   coord_sf(xlim = c(bbox['xmin'], bbox['xmax']),
-#'            ylim = c(bbox['ymin'],bbox['ymax']),crs = 4326)
-#'
+#'   coord_sf(
+#'     xlim = c(bbox["xmin"], bbox["xmax"]),
+#'     ylim = c(bbox["ymin"], bbox["ymax"]), crs = 4326
+#'   )
 #' @export
 
 expand_bbox <- function(bbox, X, Y, X2 = X, Y2 = Y,
-                        crs_out = 4326){
+                        crs_out = 4326) {
   bbox <- bbox %>%
     st_as_sfc() %>%
-    sf::st_transform(crs = 4326)%>%
+    sf::st_transform(crs = 4326) %>%
     st_bbox()
 
 
-  bbox['xmin'] <-  bbox['xmin'] - (X / 6370000) * (180 / pi) / cos(bbox['xmin'] * pi/180)
-  bbox['xmax'] <-  bbox['xmax'] + (X2 / 6370000) * (180 / pi) / cos(bbox['xmax'] * pi/180)
-  bbox['ymin'] <-  bbox['ymin'] - (Y / 6370000) * (180 / pi)
-  bbox['ymax'] <- bbox['ymax'] + (Y2 / 6370000) * (180 / pi)
+  bbox["xmin"] <- bbox["xmin"] - (X / 6370000) * (180 / pi) / cos(bbox["xmin"] * pi / 180)
+  bbox["xmax"] <- bbox["xmax"] + (X2 / 6370000) * (180 / pi) / cos(bbox["xmax"] * pi / 180)
+  bbox["ymin"] <- bbox["ymin"] - (Y / 6370000) * (180 / pi)
+  bbox["ymax"] <- bbox["ymax"] + (Y2 / 6370000) * (180 / pi)
 
   bbox %>%
     st_as_sfc() %>%
     sf::st_transform(crs = crs_out) %>%
     st_bbox()
-
-
 }
-
-
-
-
-

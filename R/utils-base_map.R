@@ -24,7 +24,6 @@ xy2lonlat <- function(x, y, zoom) {
 }
 
 get_tile <- function(url) {
-
   tmp <- tempfile()
 
   h <- curl::new_handle()
@@ -33,9 +32,8 @@ get_tile <- function(url) {
   curl::curl_download(url, destfile = tmp)
 
   tryCatch(png::readPNG(tmp),
-           error = function(e){
-             jpeg::readJPEG(tmp)
-           })
-
-
+    error = function(e) {
+      jpeg::readJPEG(tmp)
+    }
+  )
 }
