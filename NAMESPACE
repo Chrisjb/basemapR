@@ -3,6 +3,7 @@
 export(base_map)
 export(expand_bbox)
 import(sf)
+importFrom(ggplot2,annotation_raster)
 importFrom(purrr,map)
 importFrom(purrr,pmap)
 importFrom(purrr,pmap_dfr)
