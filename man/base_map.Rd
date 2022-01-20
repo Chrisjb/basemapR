@@ -29,15 +29,14 @@ bbox <- st_bbox(localauth_data)
 # add to ggplot
 library(ggplot2)
 ggplot() +
-base_map(bbox, increase_zoom = 2, basemap = 'google-terrain')+
-geom_sf(data = localauth_data, fill =NA )  +
-coord_sf(xlim = c(bbox$xmin, bbox$xmax), ylim = c(bbox$ymin, bbox$ymax), crs = 4326)
+  base_map(bbox, increase_zoom = 2, basemap = "google-terrain") +
+  geom_sf(data = localauth_data, fill = NA) +
+  coord_sf(xlim = c(bbox$xmin, bbox$xmax), ylim = c(bbox$ymin, bbox$ymax), crs = 4326)
 
 
 # add straight to ggplot
 
 ggplot() +
-base_map(st_bbox(localauth_data), increase_zoom = 2) +
-geom_sf(data = localauth_data, fill = NA)
-
+  base_map(st_bbox(localauth_data), increase_zoom = 2) +
+  geom_sf(data = localauth_data, fill = NA)
 }
