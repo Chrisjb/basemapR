@@ -11,6 +11,7 @@
 #'
 #' @import sf
 #' @importFrom purrr map pmap pmap_dfr
+#' @importFrom ggplot2 annotation_raster
 #'
 #'
 #' @examples
@@ -163,5 +164,5 @@ base_map <- function(bbox, increase_zoom = 0, basemap = "dark", nolabels = F) {
   args <- tile_positions %>%
     dplyr::mutate(raster = pngs)
 
-  return(purrr::pmap(args, annotation_raster, interpolate = TRUE))
+  return(purrr::pmap(args, ggplot2::annotation_raster, interpolate = TRUE))
 }
