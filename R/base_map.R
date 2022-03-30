@@ -154,6 +154,21 @@ base_map <- function(bbox, increase_zoom = 0, basemap = "dark", nolabels = F) {
   } else if (basemap == "google-terrain") {
     url <- paste0("https://mt.google.com/vt/lyrs=p&x=", tiles$x, "&y=", tiles$y, "&z=", zoom, "")
     message("please cite: map data \uA9 2020 Google")
+  }else if (basemap == "USGS-Topo") {
+    url <- paste0("https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/", zoom, "/", tiles$y, "/",tiles$x)
+    message("please cite: U.S. Geological Survey")
+  }else if (basemap == "USGS-ImageryOnly") {
+    url <- paste0("https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/tile/", zoom, "/", tiles$y, "/",tiles$x)
+    message("please cite: U.S. Geological Survey")
+  }else if (basemap == "USGS-ImageryTopo") {
+    url <- paste0("https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryTopo/MapServer/tile/", zoom, "/", tiles$y, "/",tiles$x)
+    message("please cite: U.S. Geological Survey")
+  }else if (basemap == "USGS-ShadedRelief") {
+    url <- paste0("https://basemap.nationalmap.gov/arcgis/rest/services/USGSShadedReliefOnly/MapServer/tile/", zoom, "/", tiles$y, "/",tiles$x)
+    message("please cite: U.S. Geological Survey")
+  }else if (basemap == "USGS-Hydro") {
+    url <- paste0("https://basemap.nationalmap.gov/arcgis/rest/services/USGSHydroCached/MapServer/tile/", zoom, "/", tiles$y, "/",tiles$x)
+    message("please cite: U.S. Geological Survey")
   }
 
 
